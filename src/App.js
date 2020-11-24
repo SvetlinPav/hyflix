@@ -1,12 +1,17 @@
-import Row from "./Row";
+import Row from "./components/Row-Component/Row";
 import "./App.css";
-import requests from "./requests";
-import Banner from "./Banner";
-import Nav from "./Nav";
+import requests from "./axios/requests";
+import Banner from "./components/Banner-Component/Banner";
+import Nav from "./components/Nav-Component/Nav";
+
+import ReactNotification from "react-notifications-component";
+import "animate.css";
+import "react-notifications-component/dist/theme.css";
 
 function App() {
   return (
     <div className="App">
+      <ReactNotification />
       <Nav />
       <Banner />
       <Row
@@ -20,7 +25,6 @@ function App() {
       <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
       <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
       <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
-      <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
     </div>
   );
 }
