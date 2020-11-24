@@ -19,7 +19,9 @@ function Nav() {
 
   return (
     <div className={`nav ${show && "nav__solid"}`}>
-      <img src={HyLogo} alt="Hyflix Logo" className="nav__logo" />
+      <a href="#">
+        <img src={HyLogo} alt="Hyflix Logo" className="nav__logo" />
+      </a>
       <img src={ProfileAvatar} alt="Hyflix Avatar" className="nav__avatar" />
     </div>
   );

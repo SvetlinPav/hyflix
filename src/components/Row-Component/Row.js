@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../axios/axios";
 import "./Row.css";
-import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 import { store } from "react-notifications-component";
+import Trailer from "../Trailer-Component/Trailer";
 
 const base_url = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
+  const [movieName, setmovieName] = useState();
+  const [movieImg, setmovieImg] = useState();
+  const [movieOverview, setmovieOverview] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -19,15 +22,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
     }
     fetchData();
   }, [fetchUrl]);
-
-  const opts = {
-    height: "390",
-    width: "40%",
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-    },
-  };
 
   const noTrailerAlert = () => {
     store.addNotification({
@@ -54,6 +48,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
         .then((url) => {
           const urlParams = new URLSearchParams(new URL(url).search);
           setTrailerUrl(urlParams.get("v"));
+          setmovieName(movie.title || movie.name || movie.original_name);
+          setmovieImg(movie.backdrop_path);
+          setmovieOverview(movie.overview);
         })
         .catch((error) => noTrailerAlert());
     }
@@ -62,7 +59,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
   return (
     <div className="row">
       <h2>{title}</h2>
-
       <div className="row__posters">
         {movies.map((movie) => (
           <img
@@ -75,8 +71,16 @@ function Row({ title, fetchUrl, isLargeRow }) {
             alt={movie.name}
           />
         ))}
+        ;
       </div>
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+      {trailerUrl ? (
+        <Trailer
+          trailerUrl={trailerUrl}
+          movieName={movieName}
+          movieImg={movieImg}
+          movieOverview={movieOverview}
+        />
+      ) : null}
     </div>
   );
 }
