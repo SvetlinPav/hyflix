@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../axios/axios";
 import requests from "../../axios/requests";
+import Loading from "../Loading-Component/Loading";
 import "./Banner.css";
 
 function Banner() {
@@ -22,7 +23,9 @@ function Banner() {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   };
 
-  return (
+  return movie < 1 ? (
+    <Loading />
+  ) : (
     <header
       className="banner"
       style={{

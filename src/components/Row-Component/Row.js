@@ -71,7 +71,6 @@ function Row({ title, fetchUrl, isLargeRow }) {
             alt={movie.name}
           />
         ))}
-        ;
       </div>
       {trailerUrl ? (
         <Trailer

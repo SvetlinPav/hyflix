@@ -31,7 +31,9 @@ function Trailer({ movieName, movieImg, movieOverview, trailerUrl }) {
 
         <h1 className="trailer__description">{truncate(movieOverview, 125)}</h1>
       </div>
-      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
+      {trailerUrl && (
+        <YouTube videoId={trailerUrl} opts={opts} className="trailerVid" />
+      )}
     </header>
   );
 }

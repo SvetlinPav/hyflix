@@ -1,0 +1,24 @@
+.loader {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.loadingLogo {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  padding-bottom: 60px;
+}
+
+.loadingSpinner {
+  width: 100%;
+  height: 140px;
+}

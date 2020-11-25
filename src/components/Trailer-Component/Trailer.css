@@ -78,3 +78,9 @@
     padding-top: 50px;
   }
 }
+
+@media screen and (max-width: 870px) {
+  .trailerVid {
+    width: 100%;
+  }
+}

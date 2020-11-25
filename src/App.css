@@ -2,8 +2,11 @@
   margin: 0;
 }
 
-.App {
+body {
   background-color: #111;
+}
+
+.App {
   font-family: "montserrat", sans-serif;
   font-weight: 600;
 }

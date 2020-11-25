@@ -1,3 +1,4 @@
+import React from "react";
 import Row from "./components/Row-Component/Row";
 import "./App.css";
 import requests from "./axios/requests";
@@ -7,8 +8,9 @@ import Nav from "./components/Nav-Component/Nav";
 import ReactNotification from "react-notifications-component";
 import "animate.css";
 import "react-notifications-component/dist/theme.css";
+import Loading from "./components/Loading-Component/Loading";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <ReactNotification />
@@ -27,6 +29,6 @@ function App() {
       <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
     </div>
   );
-}
+};
 
 export default App;
