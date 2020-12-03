@@ -3,6 +3,7 @@ import axios from "../../axios/axios";
 import requests from "../../axios/requests";
 import Loading from "../Loading-Component/Loading";
 import "./Banner.css";
+import { store } from "react-notifications-component";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
@@ -38,7 +39,28 @@ function Banner() {
     >
       <div className="banner__contents">
         <h1 className="banner__title">
-          {movie?.title || movie?.name || movie?.original_name}
+          {movie?.title || movie?.name || movie?.original_name
+            ? movie?.title || movie?.name || movie?.original_name
+            : setTimeout(() => {
+                store.addNotification({
+                  title: "Page will be refreshed.",
+                  message:
+                    "We have to refresh the page because we couldn't get some data.",
+                  type: "warning",
+                  insert: "top",
+                  container: "top-left",
+                  animationIn: ["animate__animated", "animate__backInLeft"],
+                  animationOut: ["animate__animated", "animate__backOutLeft"],
+                  showIcon: true,
+                  dismiss: {
+                    duration: 4000,
+                    onScreen: true,
+                  },
+                });
+                setTimeout(() => {
+                  window.location.reload();
+                }, 3000);
+              }, 1000)}
         </h1>
 
         <div className="banner__buttons">
